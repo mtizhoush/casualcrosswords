@@ -536,12 +536,41 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var timer: UILabel!
+    var counter: Float = 0
+    var startTimer = Timer()
+    @objc var showTimer: Timer!
+    var minutes: Int = 0
+    var seconds: Int = 0
+    var timerString: String = ""
+
+    func setTimer() {
+        timer.text = "00:00"
+        startTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(ViewController.updateTimer), userInfo: nil, repeats: true)
+    }
+ 
+    @objc func updateTimer() {
+        //counter += 0.1
+        //timer.text = String(format: "%.1f", counter)
+        seconds += 1
+        if(seconds == 60) {
+            minutes += 1
+            seconds = 0
+        }
+        let secondsString = seconds > 9 ? "\(seconds)" : "0\(seconds)"
+        let minutesString = minutes > 9 ? "\(minutes)" : "0\(minutes)"
+        
+        timerString = "\(minutesString):\(secondsString)"
+        timer.text = timerString
+    }
+    
     func customKeyboard()
     {
         var i = 0
         
         while(i < keyButtons.count) {
             keyButtons[i].backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.6)
+            keyButtons[i].layer.cornerRadius = 5
             i += 1
         }
     }
@@ -730,9 +759,11 @@ class ViewController: UIViewController {
             }
             lastSender.backgroundColor = UIColor.white
             lastSender = allButtons[nextIn[0]][nextIn[1]]
+            
         }
+
     }
-    
+ 
     func nextAvailableIndex(){
         
         if(direction == "r"){
@@ -786,6 +817,8 @@ class ViewController: UIViewController {
         solutionGrid()
         keyboardArray()
         customKeyboard()
+        setTimer()
+
     }
     
     func setBackground() {
