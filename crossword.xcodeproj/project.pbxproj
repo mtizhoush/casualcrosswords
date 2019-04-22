@@ -17,7 +17,6 @@
 		C74E90DE223A10D30024C0AE /* crosswordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74E90DD223A10D30024C0AE /* crosswordUITests.swift */; };
 		C78DC1A2226DB6BF00195557 /* BeachMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78DC1A1226DB6BF00195557 /* BeachMusic.mp3 */; };
 		C793CE092243468B003FA978 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C793CE082243468B003FA978 /* CustomButton.swift */; };
-		C793CE0D22434EA7003FA978 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C793CE0C22434EA7003FA978 /* Buttons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 		C74E90DF223A10D30024C0AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C78DC1A1226DB6BF00195557 /* BeachMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BeachMusic.mp3; path = ../../../../Downloads/BeachMusic.mp3; sourceTree = "<group>"; };
 		C793CE082243468B003FA978 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		C793CE0C22434EA7003FA978 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +108,6 @@
 				C74E90C1223A10D20024C0AE /* Main.storyboard */,
 				C7378A472267BAE80020D283 /* MainMenuController.swift */,
 				C793CE082243468B003FA978 /* CustomButton.swift */,
-				C793CE0C22434EA7003FA978 /* Buttons.swift */,
 				C74E90C4223A10D30024C0AE /* Assets.xcassets */,
 				C78DC1A1226DB6BF00195557 /* BeachMusic.mp3 */,
 				C74E90C6223A10D30024C0AE /* LaunchScreen.storyboard */,
@@ -272,7 +269,6 @@
 				C74E90C0223A10D20024C0AE /* ViewController.swift in Sources */,
 				C74E90BE223A10D20024C0AE /* AppDelegate.swift in Sources */,
 				C793CE092243468B003FA978 /* CustomButton.swift in Sources */,
-				C793CE0D22434EA7003FA978 /* Buttons.swift in Sources */,
 				C7378A482267BAE80020D283 /* MainMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

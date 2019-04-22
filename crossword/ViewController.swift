@@ -604,8 +604,7 @@ class ViewController: UIViewController {
         sender.isSelected = true
         sender.backgroundColor = UIColor(red: 0.5, green: 1, blue: 1, alpha: 0.5)
         
-        
-        //set the hint
+        //set hint label
         if(btn5.isSelected) {
             hint.text = "A structure with a roof and walls"
         }
