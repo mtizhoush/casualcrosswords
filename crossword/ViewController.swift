@@ -245,7 +245,7 @@ class ViewController: UIViewController {
     var iny: Int = 0
     var inx: Int = 0
     var nextIn: [Int] = [0,0]
-    var direction: String = "r"
+    var direction: String = "across"
     //var solutionWordIndex: [String: Int] = [:]
     var index: Int = 0
     var lastSender: UIButton!
@@ -575,198 +575,192 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func selectCell(_ sender: UIButton) {
-        if(!paused){
-            if(lastSender == sender){
-                if(direction == "r"){
-                    direction = "d"
-                }
-                else if (direction == "d"){
-                    direction = "r"
-                }
+        if(lastSender == sender){
+            if(direction == "across"){
+                direction = "down"
+                
             }
-            lastSender = sender
+            else if (direction == "down"){
+                direction = "across"
+            }
+        }
+        lastSender = sender
+    
+        var x = 0
+        var y = 0
+        while(y < allButtons.count){
+            while(x < allButtons.count){
+                allButtons[y][x].isSelected = false
+                allButtons[y][x].backgroundColor = UIColor.white
+                
+                x += 1
+            }
+            y += 1
+            x = 0
+        }
         
-            var x = 0
-            var y = 0
-            while(y < allButtons.count){
-                while(x < allButtons.count){
-                    allButtons[y][x].isSelected = false
-                    allButtons[y][x].backgroundColor = UIColor.white
-                    x += 1
-                }
-                y += 1
-                x = 0
-            }
-            
-            //make selected button light blue
-            sender.isSelected = true
-            sender.backgroundColor = UIColor(red: 0.5, green: 1, blue: 1, alpha: 0.5)
-                        
-            //set the hint
-            if(btn5.isSelected) {
-                hint.text = "A structure with a roof and walls"
-            }
-            else if(btn13.isSelected) {
-                hint.text = "The action or process of causing damage"
-            }
-            else if(btn14.isSelected) {
-                hint.text = "Largest non-extinct mammal on land"
-            }
-            else if(btn16.isSelected) {
-                hint.text = "A group of players form this in most sports"
-            }
-            else if(btn9.isSelected) {
-                hint.text = "The end or finish of an essay"
-            }
-            else if(btn12.isSelected) {
-                hint.text = "The study of past events"
-            }
-            else if(btn48.isSelected) {
-                hint.text = "An outer garment worn outdoors"
-            }
-            else if(btn55.isSelected) {
-                hint.text = "Relating to the science of medicine"
-            }
-            else if(btn83.isSelected) {
-                hint.text = "Recently introduced, not old"
-            }
-            else if(btn104.isSelected) {
-                hint.text = "The smallest particle of matter"
-            }
-            else if(btn81.isSelected) {
-                hint.text = "Common device used to control a TV"
-            }
-            else if(btn124.isSelected) {
-                if(direction == "d") {
-                    hint.text = "A change of place, position, or state"
-                }
-                else {
-                    hint.text = "Be in charge of"
-                }
-            }
-            else if(btn130.isSelected) {
-                if(direction == "d") {
-                    hint.text = "Part of the ocean partially enclosed by land"
-                }
-                else {
-                    hint.text = "A female who has the same parents as another person"
-                }
-            }
-            else if(btn149.isSelected) {
-                hint.text = "Used to refer to all individual members"
+        //make selected button light blue
+        sender.isSelected = true
+        sender.backgroundColor = UIColor(red: 0.5, green: 1, blue: 1, alpha: 0.5)
+        
+        
+        //set the hint
+        if(btn5.isSelected) {
+            hint.text = "A structure with a roof and walls"
+        }
+        else if(btn13.isSelected) {
+            hint.text = "The action or process of causing damage"
+        }
+        else if(btn14.isSelected) {
+            hint.text = "Largest non-extinct mammal on land"
+        }
+        else if(btn16.isSelected) {
+            hint.text = "A group of players form this in most sports"
+        }
+        else if(btn9.isSelected) {
+            hint.text = "The end or finish of an essay"
+        }
+        else if(btn12.isSelected) {
+            hint.text = "The study of past events"
+        }
+        else if(btn48.isSelected) {
+            hint.text = "An outer garment worn outdoors"
+        }
+        else if(btn55.isSelected) {
+            hint.text = "Relating to the science of medicine"
+        }
+        else if(btn83.isSelected) {
+            hint.text = "Recently introduced, not old"
+        }
+        else if(btn104.isSelected) {
+            hint.text = "The smallest particle of matter"
+        }
+        else if(btn81.isSelected) {
+            hint.text = "Common device used to control a TV"
+        }
+        else if(btn124.isSelected) {
+            if(direction == "down") {
+                hint.text = "A change of place, position, or state"
             }
             else {
-                hint.text = " "
+                hint.text = "Be in charge of"
             }
-
+        }
+        else if(btn130.isSelected) {
+            if(direction == "down") {
+                hint.text = "Part of the ocean partially enclosed by land"
+            }
+            else {
+                hint.text = "A female who has the same parents as another"
+            }
+        }
+        else if(btn149.isSelected) {
+            hint.text = "Used to refer to all individual members"
+        }
+        else {
+            hint.text = " "
         }
     }
     
     @IBAction func keyboardAction(_ sender: UIButton) {
-        if(!paused) {
-            nextIn.removeAll()
-            var letter = sender.title(for: UIControl.State.normal)!
-            
-            iny = 0
-            inx = 0
-            
-            var i = 0
-            var j = 0
-            
-            if(direction == "r") {
-                while(i < allButtons.count) {
-                    while(j < allButtons.count) {
-                        if(allButtons[i][j].isSelected) {
-                            if(letter == "Del") {
-                                allButtons[i][j].setTitle("", for: .normal)
-                                allButtons[i][j].isSelected = false
-                                nextIn.append(i)
-                                nextIn.append(j)
-                            }
-                            else {
-                                allButtons[i][j].setTitle(letter, for: .normal)
-                                allButtons[i][j].isSelected = false
-                                nextIn.append(i)
-                                nextIn.append(j + 1)
-                            }
+        nextIn.removeAll()
+        let letter = sender.title(for: UIControl.State.normal)!
+        
+        iny = 0
+        inx = 0
+        
+        var i = 0
+        var j = 0
+        
+        if(direction == "across") {
+            while(i < allButtons.count) {
+                while(j < allButtons.count) {
+                    if(allButtons[i][j].isSelected) {
+                        if(letter == "Del") {
+                            allButtons[i][j].setTitle("", for: .normal)
+                            allButtons[i][j].isSelected = false
+                            nextIn.append(i)
+                            nextIn.append(j)
                         }
-                        j += 1
-                    }
-                    i += 1
-                    j = 0
-                    
-                }
-            }
-            else if(direction == "d") {
-                while(i < allButtons.count) {
-                    while(j < allButtons.count) {
-                        if(allButtons[i][j].isSelected) {
-                            if(letter == "Del") {
-                                allButtons[i][j].setTitle("", for: .normal)
-                                allButtons[i][j].isSelected = false
-                                nextIn.append(i)
-                                nextIn.append(j)
-                            }
-                            else {
-                                allButtons[i][j].setTitle(letter, for: .normal)
-                                allButtons[i][j].isSelected = false
-                                nextIn.append(i + 1)
-                                nextIn.append(j)
-                            }
+                        else {
+                            allButtons[i][j].setTitle(letter, for: .normal)
+                            allButtons[i][j].isSelected = false
+                            nextIn.append(i)
+                            nextIn.append(j + 1)
                         }
-                        j += 1
                     }
-                    i += 1
-                    j = 0
+                    j += 1
                 }
+                i += 1
+                j = 0
+                
             }
-            nextAvailableIndex()
-            allButtons[nextIn[0]][nextIn[1]].isSelected = true
-            
-            var x = 0
-            var y = 0
-            var posx = 0
-            var posy = 0
-            while(y < allButtons.count) {
-                while(x < allButtons.count) {
-                    if(allButtons[y][x].isSelected) {
-                        posx = x
-                        posy = y
-                    }
-                    x += 1
-                }
-                y += 1
-                x = 0
-            }
-            
-            if(direction == "r") {
-                while(posx < allButtons.count) {
-                    if(allButtons[posy][posx].isEnabled == false){
-                        break
-                    }
-                    posx += 1
-                }
-            }
-            else if(direction == "d") {
-                while(posy < allButtons.count) {
-                    if(allButtons[posy][posx].isEnabled == false){
-                        break
-                    }
-                    posy += 1
-                }
-            }
-            lastSender.backgroundColor = UIColor.white
-            lastSender = allButtons[nextIn[0]][nextIn[1]]
-            
         }
-
+        else if(direction == "down") {
+            while(i < allButtons.count) {
+                while(j < allButtons.count) {
+                    if(allButtons[i][j].isSelected) {
+                        if(letter == "Del") {
+                            allButtons[i][j].setTitle("", for: .normal)
+                            allButtons[i][j].isSelected = false
+                            nextIn.append(i)
+                            nextIn.append(j)
+                        }
+                        else {
+                            allButtons[i][j].setTitle(letter, for: .normal)
+                            allButtons[i][j].isSelected = false
+                            nextIn.append(i + 1)
+                            nextIn.append(j)
+                        }
+                    }
+                    j += 1
+                }
+                i += 1
+                j = 0
+            }
+        }
+        nextIndex()
+        allButtons[nextIn[0]][nextIn[1]].isSelected = true
+        
+        var x = 0
+        var y = 0
+        var posx = 0
+        var posy = 0
+        while(y < allButtons.count) {
+            while(x < allButtons.count) {
+                if(allButtons[y][x].isSelected) {
+                    posx = x
+                    posy = y
+                }
+                x += 1
+            }
+            y += 1
+            x = 0
+        }
+        
+        if(direction == "across") {
+            while(posx < allButtons.count) {
+                if(allButtons[posy][posx].isEnabled == false){
+                    break
+                }
+                posx += 1
+            }
+        }
+        else if(direction == "down") {
+            while(posy < allButtons.count) {
+                if(allButtons[posy][posx].isEnabled == false){
+                    break
+                }
+                posy += 1
+            }
+        }
+        lastSender.backgroundColor = UIColor.white
+        lastSender = allButtons[nextIn[0]][nextIn[1]]
     }
  
-    func nextAvailableIndex(){
-        
-        if(direction == "r"){
+    func nextIndex(){
+        if(direction == "across"){
             if(nextIn[1] >= allButtons.count){
                 nextIn[1] = 0
                 nextIn[0] += 1
@@ -786,7 +780,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        else if(direction == "d"){
+        else if(direction == "down"){
             if(nextIn[0] >= allButtons.count){
                 nextIn[0] = 0
                 nextIn[1] += 1
@@ -807,7 +801,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
