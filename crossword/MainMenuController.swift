@@ -45,14 +45,16 @@ class MainMenuController: UIViewController {
          play.titleLabel!.font = UIFont(name: "System", size: CGFloat(fontSize))
          appTitle.font = UIFont(name: "System", size: CGFloat(titleSize))*/
         
-        guard let path3 = Bundle.main.path(forResource: "BeachMusic", ofType: ".mp3")
+        
+        //Removed music due to issue with finding the mp3 file
+        /*guard let path3 = Bundle.main.path(forResource: "BeachMusic", ofType: ".mp3")
             else {return }
         let url3 = URL(fileURLWithPath: path3)
         background = try? AVAudioPlayer(contentsOf: url3, fileTypeHint: nil)
         background?.prepareToPlay()
         background?.numberOfLoops = -1
         background?.play()
-        background?.volume = 0.2
+        background?.volume = 0.2*/
         
     }
     
